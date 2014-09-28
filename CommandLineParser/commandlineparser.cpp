@@ -2,6 +2,12 @@
 
 #include <vector>
 
+/**
+ * @brief CommandLineParser::parseCommand
+ * @param inputBuffer
+ * @param delimiter
+ * @return
+ */
 Command CommandLineParser::parseCommand(char *inputBuffer, char delimiter)
 {
     //Split char into elements
