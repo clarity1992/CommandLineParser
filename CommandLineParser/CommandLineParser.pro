@@ -5,12 +5,14 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     commandlineparser.cpp \
-    command.cpp
+    command.cpp \
+    commandfactory.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
 
 HEADERS += \
     commandlineparser.h \
-    command.h
+    command.h \
+    commandfactory.h
 

@@ -1,6 +1,7 @@
 #include "commandlineparser.h"
-
-#include <vector>
+#include "commandfactory.h"
+#include <sstream>
+#include <iostream>
 
 /**
  * @brief CommandLineParser::parseCommand
@@ -8,11 +9,11 @@
  * @param delimiter
  * @return
  */
-Command CommandLineParser::parseCommand(char *inputBuffer, char delimiter)
+Command CommandLineParser::parseCommand(std::string input, char delimiter)
 {
     //Split char into elements
-    std::vector<char*> inputElements;
-    inputElements = splitInputByDelimiter(inputBuffer, delimiter);
+    std::vector<std::string> inputElements;
+    inputElements = splitInputByDelimiter(input, delimiter);
 
     //For each commandElement construct a command
     std::vector<Command> subCommands;
@@ -21,5 +22,18 @@ Command CommandLineParser::parseCommand(char *inputBuffer, char delimiter)
         Command subCommand = CommandFactory::constructCommand(inputElements.at(i));
         subCommands.push_back(subCommand);
     }
-    return Command(subCommands);
+    return CommandFactory::constructCommand(subCommands);
+}
+
+std::vector<std::string> CommandLineParser::splitInputByDelimiter(std::string input, char delimiter)
+{
+    std::vector<std::string> strings;
+    std::istringstream f(input);
+    std::string s;
+    while (getline(f, s, delimiter))
+    {
+        std::cout << s << std::endl;
+        strings.push_back(s);
+    }
+    return strings;
 }

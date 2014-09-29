@@ -2,14 +2,16 @@
 #define COMMANDLINEPARSER_H
 
 #include "command.h"
+#include <vector>
+#include <string>
 
 class CommandLineParser
 {
 public:
-    static Command parseCommand(char* inputBuffer, char delimiter);
+    static Command parseCommand(std::string input, char delimiter);
 
 private:
-    static char* splitInputByDelimiter(char* input, char delimiter);
+    static std::vector<std::string> splitInputByDelimiter(std::string input, char delimiter);
 };
 
 #endif // COMMANDLINEPARSER_H
